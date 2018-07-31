@@ -30,7 +30,12 @@ export default {
   },
   created: function() {
     const baseURI = 'http://localhost:8080';
-    this.$http.get(`${baseURI}/posts/`)
+
+    this.$http.get(`${baseURI}/posts/`, {
+      headers: {
+        'Authorization': `JWT ${this.$store.state.jwt}`
+      }
+    })
     .then((result) => {
       console.log(result)
       this.posts = result.data
